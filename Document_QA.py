@@ -61,7 +61,7 @@ def get_conversational_chain():
 
     Answer:
     """
-    model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.3)
+    model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     return load_qa_chain(model, chain_type="stuff", prompt=prompt)
 
@@ -107,8 +107,8 @@ tools = [
         "Use Web Search only if the information is clearly not in the PDF."))
 ]
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
-agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True)
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True,handle_parsing_errors=True)
 
 
 # Streamlit for UI in output
